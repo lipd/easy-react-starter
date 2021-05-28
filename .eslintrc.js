@@ -59,6 +59,7 @@ module.exports = {
       },
     ],
     'react/prop-types': OFF,
+    '@typescript-eslint/no-var-requires': OFF,
   },
   settings: {
     'import/resolver': {
