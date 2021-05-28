@@ -60,6 +60,7 @@ module.exports = {
     ],
     'react/prop-types': OFF,
     '@typescript-eslint/no-var-requires': OFF,
+    'global-require': OFF,
   },
   settings: {
     'import/resolver': {
