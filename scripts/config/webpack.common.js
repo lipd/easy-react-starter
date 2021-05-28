@@ -41,6 +41,7 @@ module.exports = {
   output: {
     filename: `js/[name]${isDevelopment ? '' : '.[hash:8]'}.js`,
     path: path.resolve(PROJECT_PATH, './dist'),
+    assetModuleFilename: 'images/[name].[contenthash:8].[ext]',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -67,6 +68,7 @@ module.exports = {
   ],
   module: {
     rules: [
+      // 样式处理
       {
         test: /\.css$/,
         use: getCssLoaders(1),
@@ -94,6 +96,20 @@ module.exports = {
             },
           },
         ],
+      },
+      // 资源处理
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024,
+          },
+        },
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2?)$/,
+        type: 'asset/resource',
       },
     ],
   },
