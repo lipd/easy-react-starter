@@ -1,5 +1,5 @@
 const OFF = 0
-// const WARN = 1
+const WARN = 1
 const ERROR = 2
 
 module.exports = {
@@ -26,6 +26,14 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', 'unicorn', 'promise', 'prettier', '@typescript-eslint'],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
+      },
+      typescript: {},
+    },
+  },
   rules: {
     'import/extensions': [
       ERROR,
@@ -59,14 +67,24 @@ module.exports = {
       },
     ],
     'react/prop-types': OFF,
+    'react/jsx-filename-extension': [ERROR, { extensions: ['.tsx', 'ts', '.jsx', 'js'] }],
+    'react/jsx-indent-props': [ERROR, 2],
+    'react/jsx-indent': [ERROR, 2],
+    'react/jsx-one-expression-per-line': OFF,
+    'react/jsx-uses-react': OFF,
+    'react/destructuring-assignment': OFF,
+    'react/state-in-constructor': OFF,
+    'react/jsx-props-no-spreading': OFF,
+    'react/react-in-jsx-scope': OFF,
     '@typescript-eslint/no-var-requires': OFF,
+    '@typescript-eslint/no-useless-constructor': ERROR,
+    '@typescript-eslint/no-empty-function': WARN,
+    '@typescript-eslint/explicit-function-return-type': OFF,
+    '@typescript-eslint/explicit-module-boundary-types': OFF,
+    '@typescript-eslint/no-explicit-any': OFF,
+    '@typescript-eslint/no-use-before-define': ERROR,
+    '@typescript-eslint/no-unused-vars': WARN,
     'global-require': OFF,
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.tsx', '.ts', '.js', 'jsx', '.json'],
-      },
-    },
+    'no-use-before-define': OFF,
   },
 }

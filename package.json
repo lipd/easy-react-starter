@@ -7,11 +7,14 @@
   "author": "lipd <lipeidao@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-react": "^7.13.13",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
     "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
     "eslint": "^7.27.0",
@@ -61,7 +64,9 @@
   },
   "dependencies": {
     "clean-webpack-plugin": "^4.0.0-alpha.0",
-    "html-webpack-plugin": "^5.3.1"
+    "html-webpack-plugin": "^5.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "browserslist": [
     ">0.2%"

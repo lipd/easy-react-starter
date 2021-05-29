@@ -36,7 +36,7 @@ const getCssLoaders = (importLoaders) => [
 
 module.exports = {
   entry: {
-    app: path.resolve(PROJECT_PATH, './src/app.js'),
+    app: path.resolve(PROJECT_PATH, './src/index.js'),
   },
   output: {
     filename: `js/[name]${isDevelopment ? '' : '.[hash:8]'}.js`,
@@ -68,6 +68,12 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.(tsx?|jsx?)$/,
+        loader: 'babel-loader',
+        options: { cacheDirectory: true },
+        exclude: /node_modules/,
+      },
       // 样式处理
       {
         test: /\.css$/,

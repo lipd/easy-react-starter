@@ -1,4 +1,5 @@
-import './app.scss'
+function App() {
+  return <div className="App">Hello World</div>
+}
 
-const root = document.querySelector('#root')
-root.innerHTML = 'hello, webpack!'
+export default App
