@@ -115,7 +115,9 @@ module.exports = {
       {
         test: /\.(tsx?|jsx?)$/,
         loader: 'babel-loader',
-        options: { cacheDirectory: true },
+        options: {
+          cacheDirectory: true,
+        },
         exclude: /node_modules/,
       },
       // 样式处理
