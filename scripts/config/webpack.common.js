@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const WebpackBar = require('webpackbar')
 const { isDevelopment, PROJECT_PATH } = require('../constants')
 
 const getCssLoaders = (importLoaders) => [
@@ -91,6 +92,10 @@ module.exports = {
           },
         },
       ],
+    }),
+    new WebpackBar({
+      name: isDevelopment ? '正在启动' : '正在打包',
+      color: isDevelopment ? '#82aaff' : '#22da6e',
     }),
   ],
   module: {
