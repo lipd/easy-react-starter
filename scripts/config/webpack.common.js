@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { isDevelopment, PROJECT_PATH } = require('../constants')
 
 const getCssLoaders = (importLoaders) => [
@@ -39,6 +40,12 @@ const getCssLoaders = (importLoaders) => [
 module.exports = {
   entry: {
     app: path.resolve(PROJECT_PATH, './src/index.tsx'),
+  },
+  cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename],
+    },
   },
   output: {
     filename: `js/[name]${isDevelopment ? '' : '.[hash:8]'}.js`,
@@ -96,6 +103,11 @@ module.exports = {
     new WebpackBar({
       name: isDevelopment ? '正在启动' : '正在打包',
       color: isDevelopment ? '#82aaff' : '#22da6e',
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        configFile: path.resolve(PROJECT_PATH, './tsconfig.json'),
+      },
     }),
   ],
   module: {
