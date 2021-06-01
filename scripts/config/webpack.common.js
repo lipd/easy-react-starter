@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 const { isDevelopment, PROJECT_PATH } = require('../constants')
 
 const getCssLoaders = (importLoaders) => [
@@ -75,6 +76,21 @@ module.exports = {
             minifyURLs: true,
             useShortDoctype: true,
           },
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          context: path.resolve(PROJECT_PATH, './public'),
+          from: '*',
+          to: path.resolve(PROJECT_PATH, './dist'),
+          toType: 'dir',
+          globOptions: {
+            dot: true,
+            gitignore: true,
+            ignore: ['**/index.html'],
+          },
+        },
+      ],
     }),
   ],
   module: {
