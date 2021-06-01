@@ -6,4 +6,14 @@ module.exports = merge(common, {
   mode: 'production',
   plugins: [new CleanWebpackPlugin()],
   devtool: false,
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 0,
+    },
+  },
+  // externals: {
+  //   react: 'React',
+  //   'react-dom': 'ReactDOM',
+  // },
 })
