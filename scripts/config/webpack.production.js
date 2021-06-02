@@ -1,5 +1,6 @@
 const { merge } = require('webpack-merge')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const webpack = require('webpack')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const path = require('path')
 const glob = require('glob')
@@ -14,6 +15,10 @@ module.exports = merge(common, {
     new CleanWebpackPlugin(),
     new PurgeCSSPlugin({
       paths: glob.sync(`${path.resolve(PROJECT_PATH, './src')}/**/*.{tsx,scss,less,css}`, { nodir: true }),
+    }),
+    new webpack.BannerPlugin({
+      raw: true,
+      banner: '/** @preserve Powered by easy-react-starter (https://github.com/lipd/easy-react-starter) */',
     }),
   ],
   devtool: false,
