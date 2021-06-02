@@ -1,8 +1,10 @@
 const { merge } = require('webpack-merge')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const path = require('path')
 const glob = require('glob')
 const PurgeCSSPlugin = require('purgecss-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const common = require('./webpack.common')
 const { PROJECT_PATH } = require('../constants')
 
@@ -16,6 +18,15 @@ module.exports = merge(common, {
   ],
   devtool: false,
   optimization: {
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+        terserOptions: {
+          compress: { pure_funcs: ['console.log'] },
+        },
+      }),
+      new CssMinimizerPlugin(),
+    ],
     splitChunks: {
       chunks: 'all',
       minSize: 0,
