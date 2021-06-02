@@ -1,12 +1,13 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { isDevelopment, PROJECT_PATH } = require('../constants')
 
 const getCssLoaders = (importLoaders) => [
-  'style-loader',
+  isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
   {
     loader: 'css-loader',
     options: {
@@ -109,7 +110,13 @@ module.exports = {
         configFile: path.resolve(PROJECT_PATH, './tsconfig.json'),
       },
     }),
-  ],
+    !isDevelopment &&
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash:8].css',
+        chunkFilename: 'css/[name].[contenthash:8].css',
+        ignoreOrder: false,
+      }),
+  ].filter(Boolean),
   module: {
     rules: [
       {

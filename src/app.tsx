@@ -1,4 +1,5 @@
 import { Greeting } from '@components/greeting'
+import './app.scss'
 
 interface IProperties {
   name: string
