@@ -1,3 +1,5 @@
+import sytles from './greeting.module.scss'
+
 export const Greeting = () => {
-  return <div>hello component</div>
+  return <div className={sytles.greeting}>hello component</div>
 }

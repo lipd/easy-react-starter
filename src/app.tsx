@@ -1,16 +1,10 @@
 import { Greeting } from '@components/greeting'
 import './app.scss'
 
-interface IProperties {
-  name: string
-  age: number
-}
-
-function App({ name, age }: IProperties) {
+function App() {
   return (
     <div className="app">
       <Greeting />
-      <span>{`Hello! I'm ${name}, ${age} years old.`}</span>
     </div>
   )
 }
